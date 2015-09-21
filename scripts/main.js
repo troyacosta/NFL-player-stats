@@ -2,10 +2,6 @@
 
 $(document).ready(function() {
 
-    yardsPerAttempt = function() {
-        return this.yards / this.attempts + 'yards';
-    }
-
     function Quarterback(name, team) {
         this.name = name
         this.team = team;
@@ -16,7 +12,6 @@ $(document).ready(function() {
         this.interceptions = 0;
         this.sacks = 0;
         this.longestCompletion = 0;
-        this.yardsPerAttempt = yardsPerAttempt();
         this.addAttempt = function(type, yards) {
             type.toLowerCase();
             var longest = 0;
@@ -45,13 +40,22 @@ $(document).ready(function() {
             if (type === 'interception') {
                 this.interception++;
             }
-            this.completionPercentage = function() {
-                return Math.round(this.completions / this.attempts * 100) + '%';
-            }
         }
+        this.yardsPerAttempt = function() {
+            return this.yards / this.attempts + 'yards';
+        }
+        this.completionPercentage = function() {
+            return Math.round(this.completions / this.attempts * 100) + '%';
+        }
+
     }
 
-    function runningBack(name, team) {
+    var jarrodHeard = new Quarterback('Jarrod Heard', 'Longhorns');
+    var steveYoung = new Quarterback('Steve Young', 'San Fransico');
+    console.log(jarrodHeard);
+    console.log(steveYoung);
+
+    function RunningBack(name, team) {
         this.name = name
         this.team = team;
         this.attempts = 0;
@@ -61,7 +65,6 @@ $(document).ready(function() {
         this.firstDowns = 0;
         this.fumbles = 0;
         this.longestRush = 0;
-        this.yardsPerAttempt = yardsPerAttempt();
         this.addAttempt = function(type, yards) {
             type.toLowerCase();
             var longest = 0;
@@ -87,9 +90,17 @@ $(document).ready(function() {
                 this.yards += yards;
             }
         }
+        this.yardsPerAttempt = function() {
+            return this.yards / this.attempts + 'yards';
+        }
     }
 
-    function kicker(name, team) {
+    var barrySanders = new RunningBack('Barry Sanders', 'Detroit');
+    var jamaalCharles = new RunningBack('Jamaal Charles', 'Kansas City');
+    console.log(barrySanders);
+    console.log(jarrodHeard);
+
+    function Kicker(name, team) {
         this.name = name;
         this.team = team;
         this.attemps = 0;
@@ -114,4 +125,10 @@ $(document).ready(function() {
             }
         }
     }
+
+    var justinTucker = new Kicker('Justin Tucker', 'Baltimore');
+    var philDawson = new Kicker('Phil Dawson', 'San Fransico');
+    console.log(justinTucker);
+    console.log(philDawson);
+
 });
